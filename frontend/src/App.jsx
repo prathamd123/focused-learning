@@ -32,7 +32,11 @@ export default function App() {
   const fetchPlaylist = async (playlistUrl) => {
     setLoading(true);
     try {
-      const res = await axios.post('/api/playlist', { playlistUrl });
+      // const res = await axios.post('/api/playlist', { playlistUrl });
+      const res = await axios.post(
+  `${import.meta.env.VITE_BACKEND_URL}/api/playlist`,
+  { playlistUrl }
+);
       setVideos(res.data.items || []);
       if ((res.data.items || []).length > 0) {
         setCurrentVideo(res.data.items[0]);
