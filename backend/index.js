@@ -4,7 +4,17 @@ const axios = require('axios');
 const cors = require('cors');
 
 const app = express();
-app.use(cors());
+// app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://focused-learning-hazel.vercel.app/product"
+    ],
+    methods: ["GET", "POST"],
+    credentials: true
+  })
+);
 app.use(express.json());
 
 const YT_KEY = process.env.YOUTUBE_API_KEY;

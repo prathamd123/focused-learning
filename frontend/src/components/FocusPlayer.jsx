@@ -13,7 +13,7 @@ export default function FocusPlayer({ videoId, title, videos = [], onNext }) {
 
   if (!videoId) {
     return (
-      <div className="bg-neutral-600 p-6 rounded shadow text-center text-gray-600">
+      <div className="bg-neutral-600 p-6 rounded shadow text-center text-white">
         Select a video to play
       </div>
     );

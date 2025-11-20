@@ -39,7 +39,7 @@ export default function App() {
     try {
       // const res = await axios.post('/api/playlist', { playlistUrl });
       const res = await axios.post(
-  `${import.meta.env.VITE_BACKEND_URL}/api/playlist`,
+  `https://focused-learning.onrender.com/api/playlist`,
   { playlistUrl }
 );
       setVideos(res.data.items || []);
