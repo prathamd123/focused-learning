@@ -3,7 +3,7 @@ import VideoCard from './VideoCard';
 
 export default function VideoGrid({ videos, onSelect }) {
   if (!videos || videos.length === 0) {
-    return <div className="bg-white p-6 rounded shadow text-center">No videos loaded</div>;
+    return <div className="bg-neutral-600 text-white p-6 rounded shadow text-center">No videos loaded</div>;
   }
 
   return (

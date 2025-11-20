@@ -13,7 +13,7 @@ export default function FocusPlayer({ videoId, title, videos = [], onNext }) {
 
   if (!videoId) {
     return (
-      <div className="bg-white p-6 rounded shadow text-center text-gray-600">
+      <div className="bg-neutral-600 p-6 rounded shadow text-center text-gray-600">
         Select a video to play
       </div>
     );
@@ -27,15 +27,15 @@ export default function FocusPlayer({ videoId, title, videos = [], onNext }) {
   const prev = currentIndex > 0 ? videos[currentIndex - 1] : null;
 
   return (
-    <div className="bg-white p-4 rounded-xl shadow">
+    <div className="bg-neutral-600 p-4 rounded-xl shadow">
       {/* Header with title + navigation */}
       <div className="flex items-center justify-between mb-3">
-        <div className="font-semibold text-lg text-gray-800">{title}</div>
+        <div className="font-semibold text-lg text-white">{title}</div>
         <div className="flex gap-2">
           {prev && (
             <button
               onClick={() => onNext(prev)}
-              className="px-3 py-1 border border-gray-300 rounded-md hover:bg-gray-100"
+              className="px-3 py-1 border border-gray-300 rounded-md text-white hover:text-black cursor-pointer hover:bg-gray-100"
             >
               Prev
             </button>
@@ -43,7 +43,7 @@ export default function FocusPlayer({ videoId, title, videos = [], onNext }) {
           {next && (
             <button
               onClick={() => onNext(next)}
-              className="px-3 py-1 border border-gray-300 rounded-md hover:bg-gray-100"
+              className="px-3 py-1 border border-gray-300 text-white hover:text-black cursor-pointer rounded-md hover:bg-gray-100"
             >
               Next
             </button>

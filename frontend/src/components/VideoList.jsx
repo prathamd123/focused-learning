@@ -2,10 +2,10 @@ import React from "react";
 
 export default function VideoList({ videos, currentVideoId, onSelect, progress, toggleProgress }) {
   return (
-    <div className="bg-white p-4 rounded shadow max-h-[80vh] overflow-y-auto">
-      <h3 className="font-semibold mb-3">Playlist Videos</h3>
+    <div className="bg-neutral-600 p-4 rounded shadow max-h-[80vh] overflow-y-auto">
+      <h3 className="font-semibold mb-3 text-white font-['Poppins]">Playlist Videos</h3>
       {!videos.length && (
-        <p className="text-sm text-gray-500">No videos loaded</p>
+        <p className="text-sm text-white">No videos loaded</p>
       )}
       <ul className="space-y-2">
         {videos.map((v, i) => {
@@ -14,8 +14,8 @@ export default function VideoList({ videos, currentVideoId, onSelect, progress, 
           return (
             <li
               key={v.videoId}
-              className={`flex items-center justify-between p-2 rounded cursor-pointer ${
-                isActive ? "bg-blue-50 border-l-4 border-blue-600" : "hover:bg-gray-50"
+              className={`flex items-center text-white justify-between p-2 rounded cursor-pointer ${
+                isActive ? "bg-gray-800 text-neutral-900 border-l-4 border-blue-600" : "hover:bg-gray-700"
               }`}
               onClick={() => onSelect(v)}
             >
@@ -28,7 +28,7 @@ export default function VideoList({ videos, currentVideoId, onSelect, progress, 
                   toggleProgress(v.videoId);
                 }}
                 className={`ml-3 text-xs px-2 py-1 rounded border ${
-                  isCompleted ? "bg-green-500 text-white border-green-600" : "border-gray-300 text-gray-600"
+                  isCompleted ? "bg-green-500 text-white border-green-600" : "border-gray-300 text-white"
                 }`}
               >
                 {isCompleted ? "Done" : "Mark"}

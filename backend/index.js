@@ -72,7 +72,13 @@ if (!vidId && item.contentDetails?.videoId) {
 app.post('/api/playlist', async (req, res) => {
   try {
     const { playlistUrl } = req.body;
-    if (!playlistUrl) return res.status(400).json({ error: 'playlistUrl missing' });
+    if (!playlistUrl) {
+  return res.status(400).json({
+    success: false,
+    message: "Please enter a playlist URL."
+  });
+}
+    // if (!playlistUrl)  return res.status(400).json({ error: 'playlistUrl missing' });
 
     const playlistId = extractPlaylistId(playlistUrl);
     const items = await fetchPlaylistItems(playlistId);
@@ -81,9 +87,14 @@ app.post('/api/playlist', async (req, res) => {
   } catch (err) {
     console.error('Error fetching playlist:', err.response?.data || err.message || err);
     return res.status(500).json({
-      error: 'Failed to fetch playlist',
-      details: err.response?.data || err.message
-    });
+  success: false,
+  message: "Playlist fetch failed. Check your playlist URL.",
+  error: err?.response?.data?.error || err.message
+});
+    // return res.status(500).json({
+    //   error: 'Failed to fetch playlist',
+    //   details: err.response?.data || err.message
+    // });
   }
 });
 
