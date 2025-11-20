@@ -70,7 +70,7 @@ export default function App() {
   };
 
   return (
-    <div className={`min-h-screen ${lightMode?"bg-slate-50" : "bg-neutral-800"}  text-slate-900`}>
+    <div className={`min-h-screen ${lightMode?"bg-[#FCF5EE]" : "bg-neutral-800"}  text-slate-900`}>
       <header className="bg-neutral-800 shadow p-4 flex items-center justify-between border-b border-neutral-700">
         <h1 className="text-xl text-white font-bold font-['Poppins']">Focused Learning</h1>
         <div className="flex items-center gap-2">
@@ -115,24 +115,24 @@ export default function App() {
 
             {/* Saved playlists */}
             {/* Saved playlists */}
-<div className="bg-neutral-600 p-4 rounded shadow">
-  <h3 className="font-semibold mb-2 text-white">Saved Playlists</h3>
+<div className={` ${lightMode?"bg-[#EEEBD3] text-black":"bg-neutral-600"} p-4 rounded shadow`}>
+  <h3 className={`font-semibold mb-2 ${lightMode?"text-black":"text-white"} `}>Saved Playlists</h3>
   {!savedPlaylists.length ? (
-    <p className="text-sm text-white">No saved playlists</p>
+    <p className={`text-sm ${lightMode?"text-black":"text-white"} `}>No saved playlists</p>
   ) : (
-    <ul className="space-y-2 text-white">
+    <ul className={`space-y-2 ${lightMode?"text-black":"text-white"} `}>
       {savedPlaylists.map(p => (
         <li key={p.id} className="flex items-center justify-between">
           <div className="text-sm truncate w-32" title={p.title}>{p.title}</div>
           <div className="flex gap-2 items-center">
             <button
-              className="px-2 py-1 border rounded text-sm text-white hover:bg-blue-50"
+              className={`px-2 py-1 border rounded text-sm  ${lightMode?"text-black":"text-white"} hover:bg-blue-50`}
               onClick={() => fetchPlaylist(p.url)}
             >
               Load
             </button>
             <button
-              className="px-2 py-1 border rounded text-sm text-white hover:bg-green-50"
+              className={`px-2 py-1 border rounded text-sm ${lightMode?"text-black":"text-white"}  hover:bg-green-50`}
               onClick={() => {
                 navigator.clipboard?.writeText(p.url);
                 toast.message('Playlist URL copied');

@@ -1,11 +1,14 @@
 import React from "react";
+import { useTheme } from '../context/useTheme.js';
 
 export default function VideoList({ videos, currentVideoId, onSelect, progress, toggleProgress }) {
+    const { lightMode } = useTheme();
+  
   return (
-    <div className="bg-neutral-600 p-4 rounded shadow max-h-[80vh] overflow-y-auto">
-      <h3 className="font-semibold mb-3 text-white font-['Poppins]">Playlist Videos</h3>
+    <div className={`p-4 rounded shadow max-h-[80vh] overflow-y-auto ${lightMode?"bg-[#EEEBD3] text-black" : "bg-neutral-600 text-white"}` }>
+      <h3 className={`font-semibold mb-3 ${lightMode?"text-black":"text-white"} font-['Poppins]`}>Playlist Videos</h3>
       {!videos.length && (
-        <p className="text-sm text-white">No videos loaded</p>
+        <p className={`text-sm ${lightMode?"text-black":"text-white"}`}>No videos loaded</p>
       )}
       <ul className="space-y-2">
         {videos.map((v, i) => {
@@ -14,8 +17,10 @@ export default function VideoList({ videos, currentVideoId, onSelect, progress, 
           return (
             <li
               key={v.videoId}
-              className={`flex items-center text-white justify-between p-2 rounded cursor-pointer ${
-                isActive ? "bg-gray-800 text-neutral-900 border-l-4 border-blue-600" : "hover:bg-gray-700"
+              className={`flex items-center justify-between p-2 rounded cursor-pointer
+                ${lightMode?"text-black":"text-white"}
+                ${
+                isActive ? "bg-gray-400 text-neutral-900 border-l-4 border-[#A1BC98]" : ""
               }`}
               onClick={() => onSelect(v)}
             >

@@ -1,9 +1,14 @@
 import React from 'react';
 import VideoCard from './VideoCard';
+import { useTheme } from '../context/useTheme.js';
+
 
 export default function VideoGrid({ videos, onSelect }) {
+      const { lightMode } = useTheme();
+  
   if (!videos || videos.length === 0) {
-    return <div className="bg-neutral-600 text-white p-6 rounded shadow text-center">No videos loaded</div>;
+    return <div className={`${lightMode?"bg-[#EEEBD3] text-black":"bg-neutral-600 text-white"} p-6 rounded shadow text-center`}>No videos loaded</div>;
+    // <div className={`${lightMode?"bg-[#F8E9C5] text-black border border-black":"bg-neutral-600 text-white"} p-6 rounded shadow text-center`}></div>
   }
 
   return (

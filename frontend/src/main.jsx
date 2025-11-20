@@ -9,11 +9,11 @@ import { ThemeProvider } from './context/ThemeContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
     <ThemeProvider>
+    <BrowserRouter>
       <Toaster richColors position="top-center" />
     <App />
-    </ThemeProvider>
     </BrowserRouter>
+    </ThemeProvider>
   </StrictMode>,
 )

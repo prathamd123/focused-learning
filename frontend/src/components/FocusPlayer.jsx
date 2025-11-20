@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
+import { useTheme } from '../context/useTheme.js';
+
 
 export default function FocusPlayer({ videoId, title, videos = [], onNext }) {
+    const { lightMode } = useTheme();
+  
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === 'Escape') {
@@ -27,15 +31,16 @@ export default function FocusPlayer({ videoId, title, videos = [], onNext }) {
   const prev = currentIndex > 0 ? videos[currentIndex - 1] : null;
 
   return (
-    <div className="bg-neutral-600 p-4 rounded-xl shadow">
+    <div className={`p-4 rounded-xl shadow ${lightMode?"bg-[#F8E9C5] text-black" : "bg-neutral-600 text-white"}`}>
       {/* Header with title + navigation */}
       <div className="flex items-center justify-between mb-3">
-        <div className="font-semibold text-lg text-white">{title}</div>
+        <div className={`font-semibold text-lg ${lightMode?"text-black":"text-white"} `}>{title}</div>
         <div className="flex gap-2">
           {prev && (
             <button
               onClick={() => onNext(prev)}
-              className="px-3 py-1 border border-gray-300 rounded-md text-white hover:text-black cursor-pointer hover:bg-gray-100"
+              // className={`px-3 py-1 border border-gray-300 rounded-md hover:text-black cursor-pointer hover:bg-gray-100 ${lightMode?"bg-white text-black":"bg-neutral-800 text-white"}`}
+              className={`px-3 py-1 border border-gray-300 rounded-md cursor-pointer hover:bg-gray-100 ${lightMode?"bg-white text-black":" hover:bg-neutral-600 text-white"}`}
             >
               Prev
             </button>
@@ -43,7 +48,9 @@ export default function FocusPlayer({ videoId, title, videos = [], onNext }) {
           {next && (
             <button
               onClick={() => onNext(next)}
-              className="px-3 py-1 border border-gray-300 text-white hover:text-black cursor-pointer rounded-md hover:bg-gray-100"
+              // className="px-3 py-1 border border-gray-300 text-white hover:text-black cursor-pointer rounded-md hover:bg-gray-100"
+              className={`px-3 py-1 border border-gray-300 rounded-md cursor-pointer hover:bg-gray-100 ${lightMode?"bg-white text-black":" hover:bg-neutral-600 text-white"}`}
+
             >
               Next
             </button>

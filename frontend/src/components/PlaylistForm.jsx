@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { toast } from "sonner";
+import { useTheme } from '../context/useTheme.js';
 
 export default function PlaylistForm({ onFetch, onSave, loading }) {
   const [url, setUrl] = useState('');
   const [title, setTitle] = useState('');
+  const { lightMode } = useTheme();
 
   const handleFetch = () => {
     if (!url.trim()) return toast.warning('Paste playlist URL or ID');
@@ -18,12 +20,12 @@ export default function PlaylistForm({ onFetch, onSave, loading }) {
   };
 
   return (
-    <div className="bg-neutral-800 text-white p-4 rounded shadow">
+    <div className={`p-4  rounded shadow ${lightMode?"bg-[#FCF5EE] text-black" : "bg-neutral-800 text-white"}`}>
       <div className="flex gap-2">
         <input
           value={url}
           onChange={(e) => setUrl(e.target.value)}
-          className="flex-1 border px-3 py-2 rounded focus:outline-none"
+          className={`flex-1 border px-3 py-2 rounded focus:outline-none ${lightMode?"placeholder-black":"placeholder-white"}`}
           placeholder="Paste YouTube playlist link or id..."
         />
         <button onClick={handleFetch} disabled={loading} className="px-4 py-2 rounded bg-green-700 opacity-90 text-white cursor-pointer hover:opacity-100">
@@ -35,7 +37,7 @@ export default function PlaylistForm({ onFetch, onSave, loading }) {
         <input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="flex-1 border px-3 py-2 rounded focus:outline-none"
+          className={`flex-1 border px-3 py-2 rounded focus:outline-none ${lightMode?"placeholder-black":"placeholder-white"}`}
           placeholder="Give a name to save playlist (optional)"
         />
         <button onClick={handleSave} className="px-4 py-2 border rounded cursor-pointer">Save</button>
