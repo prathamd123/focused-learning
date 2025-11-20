@@ -33,8 +33,8 @@ export default function VideoList({ videos, currentVideoId, onSelect, progress, 
                   toggleProgress(v.videoId);
                 }}
                 className={`ml-3 text-xs px-2 py-1 rounded border ${
-                  isCompleted ? "bg-green-500 text-white border-green-600" : "border-gray-300 text-white"
-                }`}
+                  isCompleted ? "bg-green-500  border-green-600" : "border-black-300"}
+                  ${lightMode?"text-black border-black":"text-white"}`}
               >
                 {isCompleted ? "Done" : "Mark"}
               </button>
