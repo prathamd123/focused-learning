@@ -16,6 +16,9 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [currentVideo, setCurrentVideo] = useState(null);
   const [focusMode, setFocusMode] = useState(false);
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null);
+
+ 
   const [savedPlaylists, setSavedPlaylists] = useState(() => {
     try { return JSON.parse(localStorage.getItem('savedPlaylists') || '[]') } catch(e) { return []; }
   });
@@ -69,6 +72,7 @@ export default function App() {
     }));
   };
 
+  
   return (
     <div className={`min-h-screen ${lightMode?"bg-[#FCF5EE]" : "bg-neutral-800"}  text-slate-900`}>
       <header className="bg-neutral-800 shadow p-4 flex items-center justify-between border-b border-neutral-700">
@@ -85,6 +89,38 @@ export default function App() {
           </button>
         </div>
       </header>
+       {confirmDeleteId && (
+  <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
+    <div className="bg-white dark:bg-[#1f1f1f] p-6 rounded-xl w-80 shadow-xl">
+      <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Delete Playlist?</h2>
+
+      <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">
+        This action cannot be undone.
+      </p>
+
+      <div className="flex justify-end gap-3 mt-5">
+        <button
+          onClick={() => setConfirmDeleteId(null)}
+          className="px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
+        >
+          Cancel
+        </button>
+
+        <button
+          onClick={() => {
+            setSavedPlaylists(prev =>
+              prev.filter(item => item.id !== confirmDeleteId)
+            );
+            setConfirmDeleteId(null);
+          }}
+          className="px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+)}
 
       <main className="p-6 max-w-6xl mx-auto">
         <PlaylistForm onFetch={fetchPlaylist} onSave={savePlaylist} loading={loading} />
@@ -141,6 +177,12 @@ export default function App() {
               Copy
             </button>
             <button
+  className="text-red-500 hover:text-red-700"
+  onClick={() => setConfirmDeleteId(p.id)}
+>
+  <HiTrash size={18} />
+</button>
+            {/* <button
               className="text-red-500 hover:text-red-700"
               onClick={() => {
                 if (window.confirm("Are you sure you want to delete this playlist?")) {
@@ -149,7 +191,7 @@ export default function App() {
               }}
             >
               <HiTrash size={18} />
-            </button>
+            </button> */}
           </div>
         </li>
       ))}
