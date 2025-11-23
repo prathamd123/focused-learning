@@ -162,13 +162,13 @@ export default function App() {
           <div className="text-sm truncate w-32" title={p.title}>{p.title}</div>
           <div className="flex gap-2 items-center">
             <button
-              className={`px-2 py-1 border rounded text-sm  ${lightMode?"text-black":"text-white"} hover:bg-blue-50`}
+              className={`px-2 py-1 border rounded text-sm  ${lightMode?"text-black":"text-white"} cursor-pointer`}
               onClick={() => fetchPlaylist(p.url)}
             >
               Load
             </button>
             <button
-              className={`px-2 py-1 border rounded text-sm ${lightMode?"text-black":"text-white"}  hover:bg-green-50`}
+              className={`px-2 py-1 border rounded text-sm ${lightMode?"text-black":"text-white"} cursor-pointer`}
               onClick={() => {
                 navigator.clipboard?.writeText(p.url);
                 toast.message('Playlist URL copied');
